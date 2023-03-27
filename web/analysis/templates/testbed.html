@@ -1,0 +1,15 @@
+{# tutorial/templates/tutorial/testbed.html #}
+{% load static %}
+
+{% load render_table from django_tables2 %}
+<!doctype html>
+<html>
+<head>
+    <title>List of persons</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+{#    <link rel="stylesheet" href="{% static 'django_tables2/themes/css/screen.css' %}"/>#}
+</head>
+<body>
+{% render_table table %}
+</body>
+</html>

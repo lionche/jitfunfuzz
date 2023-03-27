@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试用例</title>
+</head>
+<body>
+
+{% load filter_tools %}
+
+
+<form method="post">
+    <textarea name="testcase_content" rows="20" cols="150"
+              placeholder='请输入用例'>{{ all_testcase.first.Testcase_context }}</textarea>
+    <input type="submit" value="提交">
+</form>
+
+<table border="=1">
+    <tr>
+        <th>testcase id</th>
+        <th>testcase Testcase_context</th>
+        <th>testcase SourceFun_id</th>
+        <th>Error_type</th>
+        <th>Testbed</th>
+    </tr>
+    {% for suspicious_result in all_suspicious_result %}
+        <tr>
+            <td>{{ all_testcase.first.id }}</td>
+            <td>{{ all_testcase.first.Testcase_context }}</td>
+            <td>{{ all_testcase.first.SourceFun_id }}</td>
+            <td>{{ suspicious_result.Error_type }}</td>
+            <td>{{ testbed_info|get_item:suspicious_result.Testbed_id }}</td>
+
+            <td>{{ suspicious_result.Testcase_context }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<table border="=1">
+    <tr>
+        <th>Testcase Id</th>
+        <th>Engine</th>
+        <th>Stdout</th>
+        <th>Stderr</th>
+        <th>Returncode</th>
+    </tr>
+    {% for result in testcase_result %}
+        <tr>
+            <td>{{ result.Testcase_id }}</td>
+            <td>{{ testbed_info|get_item:result.Testbed_id }}</td>
+            <td>{{ result.Stdout }}</td>
+            <td>{{ result.Stderr }}</td>
+            <td>{{ result.Returncode }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+
+
+<form method="get">
+    <input name="id">
+    <input type="submit" value="搜索">
+</form>
+
+<form method="post">
+    <input name="remark">
+    <input type="submit" value="提交">
+</form>
+</html>
+
+
+</html>

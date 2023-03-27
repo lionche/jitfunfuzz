@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+
+  chebishe_container_service:
+    image: che_chebishe_docker_compose_image:v1
+    container_name: chebishe_container
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    # volumes:
+      # - ./mysql/datadir:/var/lib/mysql
+      # - ./mysql/conf/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+      # - ./mysql/source:/root/chebishe_all
+    #保持容器运行
+    tty: true
+    restart: always
+    ports:
+      - "18889:22"
+      - "18887:18887"
+
+    # network_mode: "host"
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           # count: 1
+    #           capabilities: [gpu]
+
+
+  mysql_container_service:
+    restart: always
+    image: mysql:5.7.36
+    container_name: chebishe_mysql_container
+    volumes:
+      - ./mysql/source:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_ROOT_PASSWORD=mysql123"
+      # - "MYSQL_DATABASE=mydb" 
+      # - "TZ=Asia/Shanghai"
+    ports:
+      - "18888:3306"

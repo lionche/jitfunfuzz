@@ -1,0 +1,8 @@
+{
+  "name": "fuzzopt",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "commander": "^10.0.0"
+  }
+}

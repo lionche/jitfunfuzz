@@ -1,0 +1,570 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <title>测试用例</title>
+    <link rel="shortcut icon" href="{% static "img/bug.ico" %}">
+</head>
+{#<script src="https://cdn.bootcss.com/ace/1.4.6/ace.js"></script>#}
+{#<script src="https://cdn.bootcss.com/ace/1.4.6/ext-beautify.js"></script>#}
+{#<script src="https://cdn.bootcss.com/ace/1.4.6/ext-language_tools.js"></script>#}
+{#<script src="https://cdn.bootcss.com/ace/1.4.6/theme-monokai.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" type="text/javascript"></script>#}
+{#<script src="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" type="text/javascript"></script>#}
+
+{#ace代码编辑器#}
+<script src="{% static "js/ace/src/ace.js" %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static "js/ace/src/ext-beautify.js" %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static "js/ace/src/ext-language_tools.js" %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static "js/ace/src/theme-iplastic.js" %}" type="text/javascript" charset="utf-8"></script>
+
+{#jquery#}
+<script src="{% static "js/jquery-3.6.0.js" %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static "css/spinkit.css" %}" type="text/javascript" charset="utf-8"></script>
+
+
+{#bootstrap#}
+<link rel="stylesheet" href="{% static "js/bootstrap-4.5.3-dist/css/bootstrap.css" %}">
+<script src="{% static "js/bootstrap-4.5.3-dist/js/bootstrap.js" %}" type="text/javascript" charset="utf-8"></script>
+
+<style>
+    #editor {
+
+        height: 400px;
+        width: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    #container-fluid-id {
+        padding: 30px 30px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+    }
+
+    #box {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #left {
+        padding-bottom: 0px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    #right {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: 100%;
+        padding-left: 60px;
+        overflow: auto;
+    }
+
+    #stdout_td_id, #stderr_td_id {
+        text-align: left;
+
+    }
+
+    td, tr, th {
+
+    {#white-space: nowrap;#}{#        表格内容居中#} text-align: center;
+        vertical-align: middle !important
+    }
+
+    #harness_table_id, different_table_id {
+    {#display: block#}
+    }
+
+
+    {#测试按钮#}
+    #b3 {
+        width: 70px;
+        height: 70px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+        background-color: #FDCFAD;
+    }
+
+    #b4 {
+        width: 70px;
+        height: 70px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+        background-color: #FDCFAD;
+    }
+
+    .spinner {
+        width: 70px;
+        height: 70px;
+        position: relative;
+        margin: 0px auto;
+    }
+
+    .double-bounce1, .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #FDCFAD;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    @-webkit-keyframes sk-bounce {
+        0%, 100% {
+            -webkit-transform: scale(0.0)
+        }
+        50% {
+            -webkit-transform: scale(1.0)
+        }
+    }
+
+    @keyframes sk-bounce {
+        0%, 100% {
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+        }
+        50% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+
+</style>
+
+<body onload="go_harness();go_remark()">
+{#<body >#}
+
+
+<div class="container-fluid" id="container-fluid-id">
+    <div class="row">
+
+    </div>
+
+    <div class="row" id="box">
+
+
+        {#    左半侧#}
+        <div class="col-md-6 col-sm-6 col-lg-5 col-xs-6" id="left">
+
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <h1 class="display-3" style="text-align: left;color: #FDCFAD  ;padding-bottom: 30px;">用例分析系统 <span
+                        class="badge badge-pill badge-primary" style="background-color: #F2E1D6"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">JS</span></h1>
+
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        爱你呦😘
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+
+                {#            id搜索框#}
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <form class="bs-example bs-example-form" role="form" method="get" onsubmit="check()">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="id" id="testcase_id"
+                                       placeholder="当前用例 : {{ Testcase_id }}" autocomplete="off">
+                                <span class="input-group-btn">
+						<button class="btn btn-light" type="submit">
+							搜索
+						</button>
+					</span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </form>
+                </div>
+
+
+                {#        代码提交框#}
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin-top: 30px">
+                    <div class="jumbotron">
+                        <h1 class="display-4">分析用例!</h1>
+                        {#                    <p class="lead">如果有所发现的话，请在下方输入框提交内容</p>#}
+                        <hr class="my-4">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="padding-bottom: 30px">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" id="editor"></div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                            <button type="button" class="btn btn-light" id="b3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                            </button>
+
+                            {#动画按钮#}
+                            <div id="spinkit_button_id" style="display: none">
+                                <div class="spinner">
+                                    <div class="double-bounce1"></div>
+                                    <div class="double-bounce2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <div class="form-group">
+                                            <textarea name="testcase_content_ajax"
+                                                      id="testcase_content_ajax_id">{{ Testcase_context }}</textarea>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" id="remark_ajax_id" style="display: none">
+
+                    <div class="jumbotron">
+                        <h1 class="display-4">提交分析!</h1>
+                        <p class="lead">如果有所发现的话，请在下方输入框提交内容</p>
+                        <hr class="my-4">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="padding-bottom: 30px">
+                            <div class="form-group">
+                                <label for="remark_content_ajax_id"></label>
+                                <textarea
+                                        class="form-control "
+                                        id="remark_content_ajax_id"
+                                        placeholder="还不快来分析我，等啥呢"
+                                        rows="5"
+                                        autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                            <button type="button" class="btn btn-light" id="b4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-send" viewBox="0 0 16 16">
+                                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                </svg>
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">保存好惹👌</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            你知道你自己很棒么
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" style="background: #FDCFAD" class="btn btn-light"
+                                                    data-dismiss="modal">当然知道！
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {#row#}
+
+        </div>
+        {#    右半侧#}
+        <div class="col-md-6 col-sm-6 col-lg-7 col-xs-6" id="right">
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" id="tableHarnessResultAjax"></div>
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" id="tableDifferentResultAjax"
+                     style="padding-top: 30px"></div>
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" id="returnCode" style="padding-top: 30px">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script>
+    {#如果搜索id是空则返回当前id#}
+
+    const go_remark = function () {
+        $.ajax({
+            url: "/analysis/get_remark_ajax/",
+            type: "POST",
+            data: {
+                "Testcase_id": {{ Testcase_id }},
+            },
+            success: function (data) {
+                const obj = JSON.parse(data);
+                console.log(obj)
+
+                if (obj.hasRemark) {
+                    document.getElementById("remark_ajax_id").style.display = "";
+                    document.getElementById("remark_content_ajax_id").value = obj.remarkContent
+                }
+            }
+        })
+    };
+
+    {#测试代码框中的用例#}
+    const go_harness = function () {
+        button_move()
+        $.ajax({
+            url: "/analysis/herness_ajax/",
+            type: "POST",
+            data: {
+                "herness_ajax": $("#testcase_content_ajax_id").val(),
+                "Testcase_id": {{ Testcase_id }},
+
+            },
+            success: function (data) {
+                const obj = JSON.parse(data);
+                {#console.log(obj)#}
+                {#console.log(obj.harness_result)#}
+                const obj_harness_result = JSON.parse(obj.harness_result);
+                const obj_different_result_list = JSON.parse(obj.different_result_list);
+                {#console.log(obj_different_result_list)#}
+                createTable_different_result_list(obj_different_result_list);
+                createTable_harness_result(obj_harness_result.Harness_Result);
+                document.getElementById("spinkit_button_id").style.display = "none";
+                document.getElementById("b3").style.display = "";
+            }
+        })
+    };
+
+
+    function check() {
+        var testcase_id = document.getElementById('testcase_id')
+        {#console.log(testcase_id.value)#}
+        {#console.log(testcase_id.value==='')#}
+        if (testcase_id.value === '') {
+
+            {#alert("不能为空");#}
+            testcase_id.value =
+            {{ Testcase_id }}
+            {#console.log(testcase_id.value)#}
+            {#return false#}
+
+        }
+        return true
+    }
+
+
+    {#    代码编辑框#}
+    var editor_ajax = ace.edit('editor');
+    {#var textContent = ''+{{ harness_result.testcase_context|safe }}#}
+    {#console.log(textContent)#}
+    var content_ajax_textarea = document.getElementById('testcase_content_ajax_id')
+    content_ajax_textarea.hidden = true
+
+    var textContent = content_ajax_textarea.value;
+
+
+    {#console.log(textContent)#}
+
+
+    editor_ajax.getSession().on('change', function (e) {
+        content_ajax_textarea.value = editor_ajax.getSession().getValue()
+        console.log('编辑器内容改变')
+    });
+    editor_ajax.getSession().setValue(textContent)
+
+    {#代码提示#}
+    editor_ajax.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+
+    {#editor_ajax.setTheme("ace/theme/monokai");#}
+    editor_ajax.setTheme("ace/theme/katzenmilch");
+
+    editor_ajax.getSession().setMode("ace/mode/javascript")
+    editor_ajax.setFontSize(13)
+
+    var wrongId;
+    const button_move = function () {
+        document.getElementById("spinkit_button_id").style.display = "";
+        document.getElementById("b3").style.display = "none";
+        {#console.log('点击测试按键')#}
+    }
+
+    $(document).ready(function () {
+        $("#b3").on("click", go_harness)
+        {#$("#b3").on("click", button_move)#}
+    })
+
+    $(document).ready(function () {
+        $("#b4").on("click", function () {
+            $.ajax({
+                url: "/analysis/remark_ajax/",
+                type: "POST",
+                data: {
+                    "remark_ajax": $("#remark_content_ajax_id").val(),
+                    "Testcase_id": {{ Testcase_id }},
+
+                },
+                success: function (data) {
+                    {#console.log(data)#}
+                    {#window.alert("保存好惹👌🏻");#}
+                    $('#myModal').modal({backdrop: false})
+                }
+            })
+        })
+    })
+
+
+    {#更新差分结果表#}
+
+    function createTable_harness_result(obj) {
+        var data = obj.outputs
+        var tableStr = "<table class='table table-condensed table-sm'  id='harness_table_id'>";
+        tableStr = tableStr
+            + "<thead class='thead-light'>"
+            + "<tr>"
+            + "<th>Id</th>"
+            + "<th>Engine Id</th>"
+            + "<th>Engine</th>"
+            + "<th>Stdout</th>"
+            + "<th>Stderr</th>"
+            + "<th>Returncode</th>"
+            + "</tr>"
+            + "</thead>";
+
+        const len = data.length;
+
+        var returnCode = ""
+
+
+        for (var i = 0; i < len; i++) {
+
+            returnCode += data[i].testbed_id
+            returnCode += '(' + data[i].returncode + ')'
+
+
+            var tdHeadStr = wrongId.includes(data[i].testbed_id) ? "<td class='table-danger'" : "<td"
+
+            {#console.log(data[i].stdout + 'ffff')#}
+
+            var firstTd = i === 0 ? '<td rowspan="0">' + {{Testcase_id}} +"</td>" : ''
+            console.log(data[i].stdout)
+            var stdout_content = data[i].stdout
+
+            tableStr = tableStr
+                + "<tr>"
+                + firstTd
+                + tdHeadStr + ">" + data[i].testbed_id + "</td>"
+                {#+ tdHeadStr + ">" + testbed_info[data[i].testbed_id] + "</td>"#}
+                + tdHeadStr + ">" + data[i].testbed_name + "</td>"
+                + tdHeadStr + " id='stdout_td_id'><code><p style='white-space:pre'>" + stdout_content + "</p></code></td>"
+                + tdHeadStr + " id='stderr_td_id'><code><p style='white-space:pre'>" + data[i].stderr + "</p></code></td>"
+                + tdHeadStr + ">" + data[i].returncode + "</td>"
+                + "</tr>";
+        }
+
+        tableStr = tableStr + "</table>";
+        //添加到div中
+        {#console.log(tableStr)#}
+        $("#tableHarnessResultAjax").html(tableStr);
+
+        $("#returnCode").html("<kbd>返回码</kbd><code>" + returnCode + "</code>");
+    }
+
+    {#更新可疑结果表#}
+
+    function createTable_different_result_list(obj) {
+        wrongId = new Array();
+        var len = obj.length;
+
+        if (len === 0) {
+            var tableStr = "";
+        }
+
+        if (len !== 0) {
+            var tableStr = "<table class='table' id='different_table_id'>";
+            tableStr = tableStr
+                + "<thead class='thead-light'>"
+                + "<tr>"
+                + "<th >Id</th>"
+                + "<th >Error Type</th>"
+                + "<th >Engine Id</th>"
+                + "<th >Engine</th>"
+                + "</tr>"
+                + "</thead>";
+
+            for (var i = 0; i < len; i++) {
+
+                wrongId.push(obj[i].testbed_id)
+
+                {#console.log(obj[i].testcase_id)#}
+                {#console.log(obj[i].error_type)#}
+                {#console.log(obj[i].testbed_id)#}
+                var firstTd = i === 0 ? '<td rowspan="0">' + {{ Testcase_id }} +"</td>" : ''
+
+                tableStr = tableStr + "<tr>"
+                    + firstTd
+                    + "<td>" + obj[i].error_type + "</td>"
+                    + "<td>" + obj[i].testbed_id + "</td>"
+                    {#+ "<td>" + testbed_info[obj[i].testbed_id] + "</td>"#}
+                    + "<td>" + obj[i].testbed_name + "</td>"
+                    + "</tr>";
+            }
+
+            tableStr = tableStr + "</table>";
+            //添加到div中
+            console.log(tableStr)
+        }
+        $("#tableDifferentResultAjax").html(tableStr);
+
+
+    }
+
+</script>
+
+</html>
